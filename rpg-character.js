@@ -22,23 +22,31 @@ export class RpgCharacter extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/rpg-character.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    this.fire = false;
+    this.walking = false;
+    this.walkingTimer = null;
+    this.face = 1;
+    this.faceItem = 1;
+    this.hairStyle = 1;
+    this.pantsStyle = 1;
+    this.shirtStyle = 1;
+    this.skinTone = 1;
+    this.hatColor = 1;
   }
 
   // Lit reactive properties
   static get properties() {
     return {
+      fire: { type: Boolean },
+      walking: { type: Boolean },
+      face: { type: Number },
+      faceItem: { type: Number },
+      hairStyle: { type: Number },
+      pantsStyle: { type: Number },
+      shirtStyle: { type: Number },
+      skinTone: { type: Number },
+      hatColor: { type: Number },
+
       ...super.properties,
       title: { type: String },
     };
@@ -71,6 +79,40 @@ export class RpgCharacter extends DDDSuper(I18NMixin(LitElement)) {
     return html`
       <div class="wrapper">
         <h3><span>${this.t.title}:</span> ${this.title}</h3>
+        <div class="character">
+          ${this.fire ? html`
+            <div class="fire"></div>` : ""}
+          ${this.walking ? html`
+            <div class="walking"></div>` : ""}
+          <div
+            class="face"
+            style="background: url('./assets/face-${this.face}.png')"
+          ></div>
+          <div
+            class="face-item"
+            style="background: url('./assets/face-item-${this.faceItem}.png')"
+          ></div>
+          <div
+            class="hair-style"
+            style="background: url('./assets/hair-style-${this.hair}.png')"
+          ></div>
+          <div
+            class="pants-style"
+            style="background: url('./assets/pants-style-${this.pants}.png')"
+          ></div>
+          <div
+            class="shirt-style"
+            style="background: url('./assets/shirt-style-${this.shirt}.png')"
+          ></div>
+          <div
+            class="skin-tone"
+            style="background: url('./assets/skin-tone-${this.skin}.png')"
+          ></div>
+          <div
+            class="hat-color"
+            style="background: url('./assets/hat-color-${this.hatColor}.png')"
+          ></div>
+        </div>
         <slot></slot>
       </div>
     `;

@@ -40,38 +40,82 @@
   <h1>rpg-character</h1>
 </body>
 
-
 <div id="demo">
-
   <rpg-character></rpg-character>
-
   <div id="controls">
     <label for="face">Face:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
-    <label for="face">Face item:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
-    <label for="face">Hair Style:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
+    <wired-slider id="face-slider" value="5" min="1" max="5"></wired-slider>
+    <label for="face-item">Face item:</label>
+    <wired-slider id="faceitem-slider" value="9" min="1" max="9"></wired-slider>
+    <label for="hair-style">Hair Style:</label>
+    <wired-slider id="hairstyle-slider" value="9" min="1" max="9"></wired-slider>
     <label for="face">Pants Style:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
+    <wired-slider id="pantsstyle-slider" value="9" min="1" max="9"></wired-slider>
     <label for="face">Shirt Style:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
+    <wired-slider id="shirtstyle-slider" value="9" min="1" max="9"></wired-slider>
     <label for="face">Skin Tone:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
+    <wired-slider id="skintone-slider" value="9" min="1" max="9"></wired-slider>
     <label for="face">Hat Color:</label>
-    <wired-slider value="10" min="5" max="15"></wired-slider>
+    <wired-slider id="hatcolor-slider" value="9" min="1" max="9"></wired-slider>
 
-    <wired-checkbox>One Fire</wired-checkbox>
-    <wired-checkbox>Walking</wired-checkbox>
-
+    <wired-checkbox id="fire-checkbox">On Fire</wired-checkbox>
+    <wired-checkbox id="walking-checkbox">Walking</wired-checkbox>
   </div>
 </div>
+
+<script>
+  const character = document.querySelector('rpg-character');
+  const fireCheckbox = document.getElementById('fire-checkbox');
+  const walkingCheckbox = document.getElementById('walking-checkbox');
+  const faceSlider = document.getElementById("face-slider");
+  const faceItemSlider = document.getElementById("faceitem-slider");
+  const hairStyleSlider = document.getElementById("hairstyle-slider");
+  const pantsStyleSlider = document.getElementById("pantsstyle-slider");
+  const shirtStyleSlider = document.getElementById("shirtstyle-slider");
+  const skinToneSlider = document.getElementById("skintone-slider");
+  const hatColorSlider = document.getElementById("hatcolor-slider");
+
+  fireCheckbox.addEventListener('change', (e) => {
+   character.fire = e.target.checked;
+  });
+
+  walkingCheckbox.addEventListener('change', (e) => {
+    character.walking = e.target.checked;
+  });
+
+  faceSlider.addEventListener("change", (e) => {
+    character.face = e.target.value;
+  })
+
+  faceItemSlider.addEventListener("change", (e) => {
+    character.faceItem = e.target.value;
+  })
+
+  hairStyleSlider.addEventListener("change", (e) => {
+    character.hair = e.target.value;
+  })
+
+  pantsStyleSlider.addEventListener("change", (e) => {
+    character.pants = e.target.value;
+  })
+
+  shirtStyleSlider.addEventListener("change", (e) => {
+    character.shirt = e.target.value;
+  })
+
+  skinToneSlider.addEventListener("change", (e) => {
+    character.skin = e.target.value;
+  }) 
+
+  hatColorSlider.addEventListener("change", (e) => {
+    character.hatColor = e.target.value;
+  })
+</script>
 
 <script>
   document.querySelector('rpg-character').style.width = '300px';
   document.querySelector('rpg-character').style.height = '400px';
 </script>
-
 
 <script type="module" src="https://unpkg.com/wired-elements?module"></script>
 <script type="module" src="./rpg-character.js"></script> 
